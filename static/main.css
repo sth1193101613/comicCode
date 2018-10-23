@@ -9,7 +9,6 @@ html{
 }
 html,body{
     width: 100%;
-    overflow-x: hidden;
     font-size: 14px;
     outline: 0;
     font-family: 'PingFang SC', "Helvetica Neue", Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;

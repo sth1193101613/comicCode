@@ -33,7 +33,8 @@
         this.timer = setInterval(() => {
           let spd = Math.floor((-scrollTop().top) / 10)
           scrollTop().top = scrollTop().top + spd
-          document.documentElement.scrollTop = scrollTop().top + spd
+          document.documentElement.scrollTop  = scrollTop().top + spd
+          document.body.scrollTop = scrollTop().top + spd
           if (scrollTop().top === 0) {
             clearInterval(this.timer)
           }

@@ -9,6 +9,7 @@
 
 <script type="text/ecmascript-6">
   import {mapMutations} from 'vuex'
+  import Bus from '../../common/bus.js'
   import rightSide from '../rightSide/rightSide.vue'
   export default {
     props:{
@@ -40,6 +41,7 @@
       rightShow () {
         if(this.backs){
           this.toggleState(true)
+          Bus.$emit('click',this.$store.state.flag)
         }else{
           this.$router.go(-1)
         }
