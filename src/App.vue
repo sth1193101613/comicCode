@@ -35,7 +35,7 @@
     overflow: hidden!important;
   }
   .backPage{
-    position: absolute;
+    position: fixed;
     z-index: 1;
     background: rgba(0,0,0,.4);
     left: 0;
