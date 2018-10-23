@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>news</title>
+    <meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./static/main.css">
+    <meta name="referrer" content="never">
+    <script>
+      (function (doc, win) {
+        let docEl = doc.documentElement,
+          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+          recalc = function () {
+            let clientWidth = docEl.clientWidth
+            if (!clientWidth) return
+            docEl.style.fontSize = 20 * (clientWidth / 320) + 'px'//  其中“20”根据你设置的html的font-size属性值做适当的变化
+          }
+
+        if (!doc.addEventListener) return
+        win.addEventListener(resizeEvt, recalc, false)
+        doc.addEventListener('DOMContentLoaded', recalc, false)
+      })(document, window);
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
