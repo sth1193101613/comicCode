@@ -67,6 +67,7 @@
 <script type="text/ecmascript-6">
   import {mapMutations} from 'vuex'
   import getTime from '../../../common/getTime'
+  import {update} from '../../../common/update'
   export default {
     data () {
       return {
@@ -113,15 +114,9 @@
         'eqIdSave'
       ]),
       epinfo (item) {
-        let msg = {
-          id: this.$route.query.comitid,
-          eqid: item.ep_id,
-          title: item.ep_title,
-          auth: this.info.comic_auth,
-          img: `${this.path}${this.comicInfo.comic_cover_url}`,
-          time:this.time
-        }
-        this.eqIdSave(msg)
+        update(this.$route.query.comitid,item.ep_id,this.comicInfo.comic_auth,this.time,item.ep_title,`${this.path}${this.comicInfo.comic_cover_url}`).then((res) => {
+          this.eqIdSave(res)
+        })
         this.$router.push({
           path: '/dateil',
           query: {

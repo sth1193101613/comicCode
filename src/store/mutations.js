@@ -22,16 +22,17 @@ const mutations = {
   },
   eqIdSave (state, eqId) {
     if (state.eqId.length === 0) {
-      state.eqId.push(eqId)
+      state.eqId.unshift(eqId)
     } else {
       for (let i in state.eqId) {
         if (eqId.id === state.eqId[i].id) {
           state.eqId[i].eqid = eqId.eqid
+          state.eqId[i].title = eqId.title
         } else {
           let hasItem = state.eqId.some(k => {
             return k.id === eqId.id
           })
-          hasItem || state.eqId.push(eqId)
+          hasItem || state.eqId.unshift(eqId)
         }
       }
     }

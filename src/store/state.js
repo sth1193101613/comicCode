@@ -18,7 +18,7 @@ if (localStorage.getItem('user')) {
   localStorage.setItem('user', username)
 }
 
-let eqId = [{id: 1, eqid: 2}]
+let eqId = []
 if (localStorage.getItem('eqId')) {
   state.eqId = JSON.parse(localStorage.getItem('eqId'))
 } else {

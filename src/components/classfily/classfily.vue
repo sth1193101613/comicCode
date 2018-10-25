@@ -69,6 +69,8 @@
     background: #f2f2f2;
     header{
       position: fixed!important;
+      border-bottom: 1px solid #e5e5e5;
+      background: #fff;
     }
     .main{
       transition: .3s;

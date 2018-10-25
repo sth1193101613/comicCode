@@ -11,7 +11,7 @@
         <li v-for="(item, index) in conmlist">
           <img :src="path+item.frame_url" :style="{width:imgWidth+'px'}">
         </li>
-        <li v-for="(item ,index) in conmlist" v-if="totol === 1">
+        <li v-for="(item ,index) in conmlist" v-if="totol !== 1">
           <img :src="path+item.frame_url" :style="{width:imgWidth+'px'}">
         </li>
         <div class="foot" v-if="conmlist.length !== 0">
@@ -29,6 +29,8 @@
   import {getComicMain} from '../../api/comicdatial'
   import top from '../scrolltop/scroll.vue'
   import Bscroll from 'better-scroll'
+  import {update} from '../../common/update'
+  import getTime from '../../common/getTime'
   export default {
     data () {
       return {
@@ -38,11 +40,15 @@
         path: 'https://cdn.comicool.cn/',
         imgWidth: null,
         fade: true,
+        time:''
       }
     },
     created () {
       this._getComicMain(this.comicid, this.epid)
       this.clinWidth()
+      getTime().then((res) => {
+        this.time = res
+      })
     },
     methods: {
       ...mapMutations([
@@ -63,24 +69,17 @@
         getComicMain(comicid, epid).then(res => {
           this.conmlist = res.frame_list
           this.totol = res.extend_info.ep_total_size
+          update(this.$route.query.comicid,this.epid,'',this.time,res.extend_info.ep_title,res.h5_share_link).then(res => {
+            this.eqIdSave(res)
+          })
         })
       },
       next () {
         this.epid++
-        let msg = {
-          id: this.$route.query.comicid,
-          eqid: this.epid
-        }
-        this.eqIdSave(msg)
         this._getComicMain(this.comicid, this.epid)
       },
       pre () {
         this.epid--
-        let msg = {
-          id: this.$route.query.comicid,
-          eqid: this.epid
-        }
-        this.eqIdSave(msg)
         this._getComicMain(this.comicid, this.epid)
       }
     },

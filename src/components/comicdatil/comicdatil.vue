@@ -1,7 +1,7 @@
 <template>
   <div class="datil">
     <v-header :class="[{men:this.$store.state.flag === true}]" :state="true" :IconClass="icon" :headerBack="1" :backs="0"></v-header>
-    <v-cover :comicInfo="comicInfo"></v-cover>
+    <v-cover :comicInfo="comicInfo" :first="first"></v-cover>
     <v-list :epList="epList" :comicInfo="comicInfo" :post="post"></v-list>
   </div>
 </template>
@@ -20,7 +20,8 @@
         post: {},
         flag: false,
         icon:"fa-home",
-        icon2:"fa-share-square-o"
+        icon2:"fa-share-square-o",
+        first:""
       }
     },
     created () {
@@ -33,6 +34,7 @@
           if (res.msg = 'success') {
             this.comicInfo = res.comic_info
             this.epList = res.ep_list
+            this.first=this.epList[0].ep_title
           }
         })
       },
